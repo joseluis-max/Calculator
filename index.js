@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
   let x = 0;
   let y = 0;
   let o = 0;
+  let clear = false;
 
   const display = document.querySelector('.calculator__display');
   const numbers = document.querySelectorAll('.number');
@@ -59,10 +60,12 @@ document.addEventListener('DOMContentLoaded', ()=> {
     }
       x = new Number(display.value);
       y = 0;
+      clear = true;
     console.log(x,y)
   });
   operations.forEach( operation => {
     operation.addEventListener('click', ( ev ) => {
+      clear = false;
       o = operation.value;
       saveInputs(display.value)
       display.value = ''
@@ -70,6 +73,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
   });
   numbers.forEach( number => {
     number.addEventListener('click', ( ev )=>{
+      if(clear){
+        restart();
+      }
       setValueInDisplay(ev.target.value)
     });
   });
@@ -90,11 +96,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
     x = 0;
     y = 0;
     o = 0;  
-    emptyValues = false;
+    clear = false;
   };
 });
-//x, y, o
-
 
 
 
