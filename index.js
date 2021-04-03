@@ -22,14 +22,20 @@ document.addEventListener('DOMContentLoaded', ()=> {
   let y = 0;
   let o = 0;
   let clear = false;
+  
 
   const display = document.querySelector('.calculator__display');
   const numbers = document.querySelectorAll('.number');
   const ac = document.getElementById('ac');
   const c = document.getElementById('c');
   const operations = document.querySelectorAll('.operation');
+  const minus = document.getElementById('minus');
   const submit = document.getElementById('submit');
 
+
+  minus.addEventListener('click', ( ev ) => {
+    display.value += '-'
+  })
   c.addEventListener('click', restart);
 
   ac.addEventListener('click', ( ev ) => {
@@ -58,7 +64,7 @@ document.addEventListener('DOMContentLoaded', ()=> {
         display.value = calculator.module(x,y);
         break;
     }
-      x = new Number(display.value);
+      x = parseFloat(display.value);
       y = 0;
       clear = true;
     console.log(x,y)
@@ -85,9 +91,9 @@ document.addEventListener('DOMContentLoaded', ()=> {
   };
   function saveInputs(value) {
     if( x == 0){
-      x = new Number(value);
+      x = parseFloat(value);
     }else{
-      y = new Number(value);
+      y = parseFloat(value);
     }
     console.log(x,y)
   };
@@ -99,8 +105,3 @@ document.addEventListener('DOMContentLoaded', ()=> {
     clear = false;
   };
 });
-
-
-
-
-
